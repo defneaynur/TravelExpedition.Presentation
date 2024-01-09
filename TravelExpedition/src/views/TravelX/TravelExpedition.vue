@@ -6,6 +6,7 @@
       </v-toolbar>
     </v-card>
   </v-container>
+
   <v-container align="center" justify="center" style="height: 50%;" v-if="busLocationsPanelBool">
     <v-card style="max-width: 40%;">
       <v-card-title class="headline"></v-card-title>
@@ -45,10 +46,10 @@
           </v-row>
           <v-row>
             <v-col>
-              <!-- <v-btn @click="setToday" outlined :class="{ 'selected-btn': todaySelected }">Bugün</v-btn>
-              <v-btn @click="setTomorrow" outlined :class="{ 'selected-btn': tomorrowSelected }">Yarın</v-btn> -->
-              <v-btn @click="setToday" outlined >Bugün</v-btn>
-              <v-btn @click="setTomorrow" outlined >Yarın</v-btn>
+              <v-btn @click="setToday" outlined :style="styleToday">Bugün</v-btn>
+              <v-btn @click="setTomorrow" outlined :style="styleTomorrow">Yarın</v-btn>
+              <!-- <v-btn @click="setToday" outlined >Bugün</v-btn>
+              <v-btn @click="setTomorrow" outlined >Yarın</v-btn> -->
             </v-col>
           </v-row>
           <v-row>
@@ -88,7 +89,8 @@
                 </v-list-item-title>
                 <v-list-item-subtitle style="font-size: medium; font-weight: bold; ">Kalkış Varış</v-list-item-subtitle>
                 <v-list-item-subtitle style="font-size: large; font-weight: bold; ">{{
-                  formatDateTime(journey.journey.departure) }} - {{ formatDateTime(journey.journey.arrival)}}</v-list-item-subtitle>
+                  formatDateTime(journey.journey.departure) }} - {{
+    formatDateTime(journey.journey.arrival) }}</v-list-item-subtitle>
                 <br>
                 <v-list-item-subtitle style="font-size: medium;padding-bottom: 1%;">{{ journey.journey.origin }} - {{
                   journey.journey.destination
@@ -124,7 +126,7 @@ import {
   // DxStringLengthRule,
   // DxRangeRule,
   // DxAsyncRule,
-  
+
 } from 'devextreme-vue/validator';
 import {
 
@@ -141,9 +143,10 @@ export default {
   },
   data() {
     return {
+
       pageName: "Travel Expedition",
       travelDate: new Date().setDate(new Date().getDate() + 1),
-      IsDateControlBool:null,
+      IsDateControlBool: true,
       busJourneys: [],
       origin: '',
       destination: '',
@@ -159,7 +162,9 @@ export default {
       },
       busLocationsPanelBool: true,
       busJourneysPanelBool: false,
-      isSearchDisabled: false
+      isSearchDisabled: false,
+      styleToday: null,
+      styleTomorrow: "background-color: #1f9b78 !important; color:white;",
     }
   },
   methods: {
@@ -173,15 +178,13 @@ export default {
     },
     checkDuplicateLocations(value) {
       if (this.originData === this.destinationData) {
-       
-        
         return 'Kalkış noktası ile varış noktası aynı olamaz';
       }
       else {
-        if(!this.IsDateControlBool){
+        if (!this.IsDateControlBool) {
           this.isSearchDisabled = true
         }
-        else{
+        else {
           this.isSearchDisabled = false
         }
         return null;
@@ -196,6 +199,8 @@ export default {
       this.travelDate = new Date();
       this.todaySelected = true;
       this.tomorrowSelected = false;
+      this.styleToday = "background-color: #1f9b78 !important; color:white;"
+      this.styleTomorrow = null
     },
     setTomorrow() {
       const tomorrow = new Date();
@@ -203,6 +208,8 @@ export default {
       this.travelDate = tomorrow;
       this.todaySelected = false;
       this.tomorrowSelected = true;
+      this.styleTomorrow = "background-color: #1f9b78 !important; color:white;"
+      this.styleToday = null
     },
     dateRuleCallback(value) {
       const today = formatDateString(new Date().toString())
@@ -210,12 +217,14 @@ export default {
 
       if (val >= today) {
         this.isSearchDisabled = false
-        this.IsDateControlBool=true
+        this.IsDateControlBool = true
         return true
       }
       else {
+        this.styleToday = null
+        this.styleTomorrow = null
         this.isSearchDisabled = true
-        this.IsDateControlBool=false
+        this.IsDateControlBool = false
         return false
       }
     },
@@ -225,7 +234,6 @@ export default {
     this.GetBusLocations("")
 
   }
-
 }
 
 async function GetBusLocations(comboName) {
