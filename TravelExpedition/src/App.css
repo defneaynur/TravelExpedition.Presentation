@@ -1,0 +1,14 @@
+.login,
+.image {
+  min-height: 100vh;
+}
+.bg-image {
+  background-image: url('assets/img/deltabg.jpg');
+  background-size: cover;
+  background-position: center center;
+}
+.dx-datagrid-rowsview .dx-row-focused.dx-data-row > td:not(.dx-focused):not(.dx-cell-modified){  /* Burası gridde row selected da seçilen satırın css si*/
+  background-color: #edf7f2;
+  color: black;
+  border-bottom:1px  gray
+}
