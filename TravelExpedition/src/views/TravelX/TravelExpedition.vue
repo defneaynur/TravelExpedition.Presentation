@@ -165,6 +165,7 @@ export default {
       isSearchDisabled: false,
       styleToday: null,
       styleTomorrow: "background-color: #1f9b78 !important; color:white;",
+      
     }
   },
   methods: {
