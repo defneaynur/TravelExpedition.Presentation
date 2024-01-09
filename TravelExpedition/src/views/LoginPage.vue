@@ -25,10 +25,6 @@
                         placeholder="Enter your password" prepend-inner-icon="mdi-lock-outline" variant="outlined"
                         @click:append-inner="showPassword = !showPassword" color="blue-grey darken-2"></v-text-field>
 
-
-                      <!-- <v-combobox class="mt-1" v-model="complex" :items="complexItems" item-title="name" item-value="id"
-                        variant="outlined" density="compact"></v-combobox> -->
-
                       <v-checkbox label="Remember me" color="teal-darken-4" value="rememberme" hide-details></v-checkbox>
 
                       <v-btn :disabled="waitingDialog" :loading="waitingDialog" block class="mb-8" rounded="pill"
@@ -120,6 +116,7 @@ export default {
           console.log(datas.sessionId)
           localStorage.setItem('sessionId', datas.sessionId)
           localStorage.setItem('deviceId', datas.deviceId)
+          localStorage.setItem('userName', this.username)
 
           this.$emit("login")
         }

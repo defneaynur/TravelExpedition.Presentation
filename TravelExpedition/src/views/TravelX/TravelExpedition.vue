@@ -143,6 +143,7 @@ export default {
     return {
       pageName: "Travel Expedition",
       travelDate: new Date().setDate(new Date().getDate() + 1),
+      IsDateControlBool:null,
       busJourneys: [],
       origin: '',
       destination: '',
@@ -172,11 +173,17 @@ export default {
     },
     checkDuplicateLocations(value) {
       if (this.originData === this.destinationData) {
-        this.isSearchDisabled = true
+       
+        
         return 'Kalkış noktası ile varış noktası aynı olamaz';
       }
       else {
-        this.isSearchDisabled = false
+        if(!this.IsDateControlBool){
+          this.isSearchDisabled = true
+        }
+        else{
+          this.isSearchDisabled = false
+        }
         return null;
       }
     },
@@ -203,10 +210,12 @@ export default {
 
       if (val >= today) {
         this.isSearchDisabled = false
+        this.IsDateControlBool=true
         return true
       }
       else {
         this.isSearchDisabled = true
+        this.IsDateControlBool=false
         return false
       }
     },

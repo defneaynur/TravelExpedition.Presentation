@@ -107,7 +107,7 @@ export default {
         }
     },
     beforeUpdate() {
-        // this.user = auth.getUser();
+        this.user = auth.getUser();
     }
 }
 

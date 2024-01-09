@@ -60,13 +60,6 @@
         color="teal-darken-1"
         rounded="xl"
       ></v-list-item>
-      <!-- <v-list-item
-        prepend-icon="mdi-currency-ils"
-        title="Rates"
-        :to="ratesLink"
-        color="teal-darken-1"
-        rounded="xl"
-      ></v-list-item> -->
     </v-list>
   </v-navigation-drawer>
 </template>
@@ -76,12 +69,9 @@ export default {
   data: () => ({
     drawer: true,
     travelExpeditionLink: "TravelExpedition",
-    // ratesLink: "Rates",
     CrudPageFirst: "CrudPageFirst",
     CrudPageSecond: "CrudPageSecond",
     items: [
-      
-    
       {
         text: "Report",
         icon: "mdi-text-box-multiple-outline",

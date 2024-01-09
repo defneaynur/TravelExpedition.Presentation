@@ -3,7 +3,7 @@
         <template v-slot:activator="{ props }">
             <v-chip style="margin: 5px" v-bind="props" color="white" variant="outlined" size="small" >
                 <v-icon start icon="mdi-account-settings" ></v-icon>
-                {{ "userInfo.UserName" }}
+                {{ userInfo.UserName }}
             </v-chip>
         </template>
         <v-card>

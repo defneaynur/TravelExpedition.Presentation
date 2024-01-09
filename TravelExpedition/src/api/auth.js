@@ -37,22 +37,10 @@ export default {
        
         return tokenPass
     },
-    // getUser() {
-    //     const token = localStorage.getItem('token')
-    //     var base64Payload = token.split('.')[1];
-    //     var payload = Buffer.from(base64Payload, 'base64');
-    //     const user = JSON.parse(payload.toString())
-
-    //     this.user.Email = user.email;
-    //     this.user.UnitId = user.unitId;
-    //     this.user.FullName = user.name;
-    //     this.user.UserId = user.userId;
-    //     this.user.UserName = user.preferred_username;
-    //     this.user.UnitName = user.unitName;
-    //     this.user.UserType = user.userType;
-    //     //this.user = JSON.parse(StorageService.getItem('user',this.secretKey))
-    //     return this.user
-    // },
+    getUser() {
+        this.user.UserName =localStorage.getItem("userName")
+        return this.user
+    },
     getToken() {
         const token = localStorage.getItem('sessionId')
         return token
