@@ -229,14 +229,14 @@ export default {
     },
 
   },
-  mounted() {
+  created() {
     this.GetBusLocations("")
 
   }
 }
 
 async function GetBusLocations(comboName) {
-  var data = null;
+  let data = null;
   if (comboName != "") {
     data = {
       Data: comboName === 'origin' ? this.originData : this.destinationData,
@@ -260,9 +260,7 @@ async function GetBusLocations(comboName) {
     }
   }
 
-
   const response = await CRUD.PostData(auth.GetBusLocationsUrl, data)
-
   if (response.status == '200') {
     const datas = response.data.data.data
     if (comboName != "") {
@@ -278,7 +276,6 @@ async function GetBusLocations(comboName) {
       this.destinationDataItems = datas.slice(0, 5);
       this.destinationData = this.destinationDataItems[4]
     }
-
   }
   else {
     this.$root.SnackBarS.show({

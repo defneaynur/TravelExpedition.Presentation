@@ -54,7 +54,7 @@
       </v-list-group> -->
       <v-divider></v-divider>
       <v-list-item
-        prepend-icon="mdi-account-multiple"
+        prepend-icon="mdi-train-car"
         title="Travel Expedition"
         :to="travelExpeditionLink"
         color="teal-darken-1"
