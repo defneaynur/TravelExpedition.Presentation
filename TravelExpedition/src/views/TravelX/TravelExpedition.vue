@@ -48,8 +48,6 @@
             <v-col>
               <v-btn @click="setToday" outlined :style="styleToday">Bugün</v-btn>
               <v-btn @click="setTomorrow" outlined :style="styleTomorrow">Yarın</v-btn>
-              <!-- <v-btn @click="setToday" outlined >Bugün</v-btn>
-              <v-btn @click="setTomorrow" outlined >Yarın</v-btn> -->
             </v-col>
           </v-row>
           <v-row>
